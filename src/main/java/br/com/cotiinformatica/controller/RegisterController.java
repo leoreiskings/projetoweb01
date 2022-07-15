@@ -1,5 +1,7 @@
 package br.com.cotiinformatica.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.cotiinformatica.entities.Compromisso;
 import br.com.cotiinformatica.entities.Usuario;
 import br.com.cotiinformatica.repositories.UsuarioRepository;
 
@@ -49,9 +52,11 @@ public class RegisterController {
 						throw new Exception("O email " + email + " informado já está cadastrado, por favor tente outro.");						
 				}				
 				
-				Usuario usuario = new Usuario(null, nome, email, senha);
+				Usuario usuario = new Usuario();
 				
-			
+				usuario.setNome(nome);
+				usuario.setEmail(email);
+				usuario.setSenha(senha);
 				
 				usuarioRepository.inserir(usuario);
 				

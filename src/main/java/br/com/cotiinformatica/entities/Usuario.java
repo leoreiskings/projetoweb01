@@ -1,5 +1,7 @@
 package br.com.cotiinformatica.entities;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +19,8 @@ public class Usuario {
 	private String email;
 	private String senha;
 	
+	//Associoacao (UM Usuario TEM MUITOS Compromissos [tem uma lista de compromissos])
+	private List<Compromisso> compromissos;
 	
 }
+  
