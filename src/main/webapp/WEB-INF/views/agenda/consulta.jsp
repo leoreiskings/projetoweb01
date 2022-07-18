@@ -38,6 +38,15 @@
 				</div>
 			</div>
 		</form>
+		
+		<!-- mt significa "margin top" no bootstrap -->
+		<div class="text-danger mt-2">
+			<strong>${mensagem_erro}</strong>
+		</div>		
+		<div class="text-success mt-2">
+			<strong>${mensagem_sucesso}</strong>
+		</div>
+		
 		<table class="table table-hover table-sm mt-4">
 			<thead>
 				<tr>
@@ -73,11 +82,16 @@
 							<c:if test="${item.prioridade == 3}">
 							<span class="badge bg-success">BAIXA</span>
 							</c:if>
-						</td>
+						</td>   
 
 						<td>
-							<a href="#" class="btn btn-primary btn-sm"> Editar </a> 
-							<a href="#" class="btn btn-danger btn-sm"> Excluir </a>
+							
+							<a href="/projetoweb01/editar-compromissos?id=${item.idCompromisso}" 
+								class="btn btn-primary btn-sm"> Editar </a>
+								
+							<a href="/projetoweb01/excluir-compromisso?id=${item.idCompromisso}" 
+								onclick="return confirm('Deseja realmente excluir o compromisso?\n${item.nome}');" 
+								class="btn btn-danger btn-sm">Excluir </a>
 						</td>
 					</tr>				
 				</c:forEach> 
