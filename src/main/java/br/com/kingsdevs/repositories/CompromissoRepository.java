@@ -126,6 +126,7 @@ public class CompromissoRepository {
 		
 		ResultSet resultSet = statement.executeQuery();// executa e lê os dados retornados do BD
 		
+		//criando lista de compromissos vazia
 		List<Compromisso> lista = new ArrayList<Compromisso>();
 		
 		while (resultSet.next()) {
