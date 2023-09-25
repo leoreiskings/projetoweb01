@@ -29,17 +29,19 @@
 
 		<form method="post" action="pesquisar-compromissos">
 			<div class="row">
+				
 				<div class="col-md-2">
-					<input type="date" class="form-control" name="dataMin"
-						required="required" />
+					<input type="date" class="form-control" name="dataMin" value="${dataMin}" required="required" />
 				</div>
+				
 				<div class="col-md-2">
-					<input type="date" class="form-control" name="dataMax"
-						required="required" />
+					<input type="date" class="form-control" name="dataMax" value="${dataMax}" required="required" />
 				</div>
+				
 				<div class="col-md-3">
 					<input type="submit" class="btn btn-success" value="Pesquisar" />
 				</div>
+				
 			</div>
 		</form>
 

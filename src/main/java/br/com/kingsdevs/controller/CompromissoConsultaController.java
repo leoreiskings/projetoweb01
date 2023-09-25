@@ -69,7 +69,10 @@ public class CompromissoConsultaController {
 			
 			List<Compromisso> lista = compromissoRepository.obterTodos(usuario.getIdUsuario(), dataMin, dataMax); //chamando o metodo sobrecarregado
 			
-			modelAndView.addObject("compromissos", lista);
+			modelAndView.addObject("compromissos", lista); //mandando de volta para a pagina a lista de contatos
+			modelAndView.addObject("dataMin", request.getParameter("dataMin")); //mandando de volta para a pagina os campos dataMin e dataMax
+			modelAndView.addObject("dataMax", request.getParameter("dataMax"));
+			
 			
 		} catch (Exception e) {
 			
