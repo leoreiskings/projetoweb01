@@ -10,9 +10,11 @@ import java.util.List;
 
 import br.com.kingsdevs.entities.Compromisso;
 import br.com.kingsdevs.factories.ConnectionFactory;
-
+//A camada repository traz os metodos que estão mais próximos do banco de dados
+// por isso trabalham com SQL diretamente em seu codigo
 //como regra devemos ter 1 classe Repository para cada entidade.
-//ela terá todas as acoes dentro dela (inserir, deletar, alterar, consul)
+//ela terá todas as acoes dentro dela (inserir, deletar, alterar, consulta)
+ 
 public class CompromissoRepository {
 
 	// método para inserir um compromisso no banco de dados
@@ -49,6 +51,7 @@ public class CompromissoRepository {
 		prepareStatement("update compromisso set nome=?, data=?, hora=?, descricao=?, prioridade=? "
 						+ "where idcompromisso=? and idusuario=?");
 	
+		//setando os valores que comporão a query
 		statement.setString(1, compromisso.getNome());
 		statement.setString(2, new SimpleDateFormat("yyyy-MM-dd").format(compromisso.getData()));
 		statement.setString(3, compromisso.getHora());
@@ -75,6 +78,7 @@ public class CompromissoRepository {
 				+ "where idcompromisso=? and idusuario=?");
 		statement.setInt(1, compromisso.getIdCompromisso());
 		statement.setInt(2, compromisso.getUsuario().getIdUsuario());
+		
 		statement.execute();
 		
 		//fechando conexao com o BD
@@ -111,7 +115,8 @@ public class CompromissoRepository {
 	}
 
 	// método para consultar todos os compromissos cadastrados no banco de dados
-	public List<Compromisso> obterTodos(Integer idUsuario, Date dataMin, Date dataMax) throws Exception 
+	public List<Compromisso> obterTodos(Integer idUsuario, Date dataMin, Date dataMax) throws Exception
+
 	{
 		
 		Connection connection = ConnectionFactory.getConnection();
@@ -150,4 +155,38 @@ public class CompromissoRepository {
 	return lista;
 	
 	}
+	
+	public Compromisso obterPorId(Integer idCompromisso, Integer idUsuario) throws Exception {
+		
+		Connection connection = ConnectionFactory.getConnection();
+		
+		PreparedStatement statement = connection.
+				prepareStatement("select * from compromisso where idcompromisso = ? and idusuario = ? ");
+		
+		statement.setInt(1, idCompromisso);
+		statement.setInt(2, idUsuario);
+		
+		ResultSet resultSet = statement.executeQuery();
+			
+		Compromisso compromisso = null;
+		
+		//se o "if" for true, significa que o resultado do resultset retornou algum registro, 
+		//entao ele entra na condicao 
+		if (resultSet.next()) {
+			
+			compromisso = new Compromisso();
+			compromisso.setIdCompromisso(resultSet.getInt("idcompromisso"));
+			compromisso.setNome(resultSet.getString("nome"));
+			compromisso.setData(new SimpleDateFormat("yyyy-MM-dd").parse(resultSet.getString("data")));
+			compromisso.setHora(resultSet.getString("hora"));
+			compromisso.setDescricao(resultSet.getString("descricao"));
+			compromisso.setPrioridade(resultSet.getInt("prioridade"));
+			
+		}
+		
+		connection.close();
+		
+		return compromisso;
+	}
+	
 }

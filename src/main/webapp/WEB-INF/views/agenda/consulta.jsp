@@ -45,10 +45,13 @@
 			</div>
 		</form>
 
-
-		<div class="text-danger">
-			<strong>${mensagem_erro}</strong>
-		</div>
+		<!-- LOCAL DE EXIBIÇÃO DAS MSGs DE ERRO OU DE SUCESSO! -->
+		<div class="mt-2">
+			<strong class="text-danger">${mensagem_erro}</strong>
+		</div>		
+		<div class="mt-2">
+			<strong class="text-success">${mensagem_sucesso}</strong>
+		</div>		
 
 		<table class="table table-hover table-sm mt-4">
 			<!-- cabecalho da pagina -->
@@ -83,9 +86,14 @@
 								<span class="badge bg-success">BAIXA</span>
 							</c:if>
 						</td>
-						<td>
-							<a href="#" class="btn btn-primary btn-sm"> Editar </a> 
-							<a href="#" class="btn btn-danger btn-sm"> Excluir </a>
+						<td><!--      /nome-do-projeto/nome-da-rota 		-->
+							<a 	href="/projetoweb01/editar-compromissos?id=${item.idCompromisso}" 
+								class="btn btn-primary btn-sm">Editar</a>
+							
+							<a href="/projetoweb01/excluir-compromisso?id=${item.idCompromisso}"
+								onclick="return confirm('Deseja realmente excluir o compromisso?\n${item.nome}');" 
+								class="btn btn-danger btn-sm">Excluir</a>
+														
 						</td>
 					</tr>
 				</c:forEach>

@@ -21,6 +21,7 @@
 		<h3>Cadastro de Compromissos</h3>
 		<p>Preencha o formulário para incluir compromissos em sua agenda.</p>
 		<hr />
+		
 		<form method="post" action="criar-compromisso">
 			
 			<!-- criando um formulario com 3 colunas a soma da largura deve ser 12 -->
@@ -46,7 +47,7 @@
 			<div class="row mb-3">
 				<div class="col-md-9">
 					<label>Descrição da tarefa</label>
-					<textarea name="descricao" class="form-control" required="required"></textarea>
+					<textarea name="descricao" class="form-control" placeholder="Digite aqui" required="required"></textarea>
 				</div>
 				<div class="col-md-3">
 					<label>Prioridade da tarefa:</label> 
@@ -73,10 +74,6 @@
 		<div class="mt-2">
 			<strong class="text-danger">${mensagem_erro}</strong>
 		</div>
-		
-		
-		
-		
 	</div>
 
 	<script

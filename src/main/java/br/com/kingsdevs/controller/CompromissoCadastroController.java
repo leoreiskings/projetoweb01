@@ -52,7 +52,10 @@ public class CompromissoCadastroController {
 				compromisso.setHora(hora);
 				compromisso.setDescricao(descricao);
 				compromisso.setPrioridade(prioridade);
-				compromisso.setUsuario((Usuario) request.getSession().getAttribute("usuario_autenticado"));
+				compromisso.setUsuario((Usuario) request.getSession().getAttribute("usuario_autenticado")); 
+				/*recuperando o usuario autenticado na sessao
+				 * request.getSession().getAttribute("usuario_autenticado")
+				 * */
 				
 				//cadastrar no banco de dados
 				CompromissoRepository compromissoRepository	= new CompromissoRepository();
